@@ -5,6 +5,11 @@ const getAllGoods = async () => {
   return result;
 };
 
+// const getAllGoods = async () => {
+//   const result = await Item.find({}, '-createdAt -updatedAt').exec();
+//   return result;
+// };
+
 module.exports = {
   getAllGoods,
 };
