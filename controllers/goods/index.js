@@ -1,0 +1,1 @@
+const goodsControllers = require('./goods');
