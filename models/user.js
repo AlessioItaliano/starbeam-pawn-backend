@@ -13,8 +13,8 @@ const usersSchema = new mongoose.Schema(
       required: true,
     },
     phone: {
-      type: Number,
-      max: 10,
+      type: String,
+      maxlength: 10,
       required: true,
     },
     email: {

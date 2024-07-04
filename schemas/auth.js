@@ -12,10 +12,10 @@ const signup = Joi.object({
     'any.required': 'Missing required last name field',
   }),
   phone: Joi.string()
-    .pattern(/^[0-9]{10}$/)
+    .regex(/^[0-9]{10}$/)
     .required()
     .messages({
-      'string.pattern.base': 'Phone number must be exactly 10 digits',
+      'string.pattern.base': 'Phone number must have 10 digits',
       'any.required': 'Missing required phone field',
     }),
   email: Joi.string().min(3).email().required().messages({
@@ -25,7 +25,7 @@ const signup = Joi.object({
     'any.required': 'Missing required email field',
   }),
   password: Joi.string()
-    .pattern(/^[a-zA-Z0-9]{8,16}$/)
+    .regex(/^[a-zA-Z0-9]{8,16}$/)
     .required()
     .messages({
       'string.base': 'Password should be a string',
