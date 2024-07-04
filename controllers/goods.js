@@ -1,6 +1,5 @@
-const { ctrlWrapper } = require('../../helpers');
-
-const { goodsServices } = require('../..services');
+const { ctrlWrapper } = require('../helpers');
+const { goodsServices } = require('../services');
 
 const getAll = async (_, res) => {
   const result = await goodsServices.getAllGoods();

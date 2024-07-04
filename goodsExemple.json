@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Laptop",
+    "category": "Electronics",
+    "quantity": 10,
+    "description": "High-performance laptop suitable for gaming and programming.",
+    "image": "https://example.com/images/laptop.jpg",
+    "owner": "John Doe",
+    "price": 999.99,
+    "addedDate": "2024-07-01",
+    "commission": 10,
+    "returnDate": "2024-07-15"
+  },
+  {
+    "name": "Smartphone",
+    "category": "Electronics",
+    "quantity": 25,
+    "description": "Latest model smartphone with advanced features.",
+    "image": "https://example.com/images/smartphone.jpg",
+    "owner": "Jane Smith",
+    "price": 699.99,
+    "addedDate": "2024-06-20",
+    "commission": 40,
+    "returnDate": "2024-07-05"
+  },
+  {
+    "name": "Headphones",
+    "category": "Accessories",
+    "quantity": 50,
+    "description": "Noise-cancelling over-ear headphones.",
+    "image": "https://example.com/images/headphones.jpg",
+    "owner": "Alice Johnson",
+    "price": 199.99,
+    "addedDate": "2024-06-25",
+    "commission": 50,
+    "returnDate": "2024-07-10"
+  },
+  {
+    "name": "Office Chair",
+    "category": "Furniture",
+    "quantity": 15,
+    "description": "Ergonomic office chair with adjustable height.",
+    "image": "https://example.com/images/office-chair.jpg",
+    "owner": "Bob Brown",
+    "price": 129.99,
+    "addedDate": "2024-07-02",
+    "commission": 5,
+    "returnDate": "2024-07-17"
+  },
+  {
+    "name": "Notebook",
+    "category": "Stationery",
+    "quantity": 100,
+    "description": "A5 size notebook with 100 pages.",
+    "image": "https://example.com/images/notebook.jpg",
+    "owner": "Cathy White",
+    "price": 2.99,
+    "addedDate": "2024-06-30",
+    "commission": 5,
+    "returnDate": "2024-07-10"
+  },
+  {
+    "name": "Gold Ring",
+    "category": "Jewelry",
+    "quantity": 5,
+    "description": "18k gold ring with a diamond.",
+    "image": "https://example.com/images/gold-ring.jpg",
+    "owner": "David King",
+    "price": 499.99,
+    "addedDate": "2024-06-15",
+    "commission": 20,
+    "returnDate": "2024-06-30"
+  },
+  {
+    "name": "Electric Guitar",
+    "category": "Musical Instruments",
+    "quantity": 7,
+    "description": "Electric guitar with a maple neck and rosewood fretboard.",
+    "image": "https://example.com/images/electric-guitar.jpg",
+    "owner": "Emma Lee",
+    "price": 299.99,
+    "addedDate": "2024-07-01",
+    "commission": 30,
+    "returnDate": "2024-07-15"
+  },
+  {
+    "name": "Mountain Bike",
+    "category": "Sporting Goods",
+    "quantity": 12,
+    "description": "Mountain bike with 21 gears and full suspension.",
+    "image": "https://example.com/images/mountain-bike.jpg",
+    "owner": "Frank Moore",
+    "price": 599.99,
+    "addedDate": "2024-06-28",
+    "commission": 25,
+    "returnDate": "2024-07-12"
+  },
+  {
+    "name": "Wristwatch",
+    "category": "Watches",
+    "quantity": 20,
+    "description": "Luxury wristwatch with a stainless steel band.",
+    "image": "https://example.com/images/wristwatch.jpg",
+    "owner": "Grace Hall",
+    "price": 149.99,
+    "addedDate": "2024-07-03",
+    "commission": 15,
+    "returnDate": "2024-07-18"
+  },
+  {
+    "name": "Power Drill",
+    "category": "Tools",
+    "quantity": 30,
+    "description": "Cordless power drill with a lithium-ion battery.",
+    "image": "https://example.com/images/power-drill.jpg",
+    "owner": "Henry Scott",
+    "price": 89.99,
+    "addedDate": "2024-07-05",
+    "commission": 10,
+    "returnDate": "2024-07-20"
+  }
+]

@@ -3,15 +3,15 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const app = require('./app');
 
-const { Db_URL, PPRT = 3000 } = process.env;
+const { DB_URL, PORT = 3000 } = process.env;
 
 mongoose
-  .connect(Db_URL)
-  .than(() => {
+  .connect(DB_URL)
+  .then(() => {
     app.listen(PORT);
-    console.log('Connected');
+    console.log(`Connected on port ${PORT}`);
   })
-  .catch(err => {
-    console.log(err.message);
+  .catch(error => {
+    console.log(error.message);
     process.exit(1);
   });
