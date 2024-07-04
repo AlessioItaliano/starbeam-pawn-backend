@@ -3,11 +3,14 @@ const cors = require('cors');
 
 const app = express();
 
+const { goodsRouter } = require('./routes');
+const { authRouter } = require('./routes');
+
 app.use(cors());
 app.use(express.json());
 
-const { goodsRouter } = require('./routes');
-app.use('/goods', goodsRouter);
+app.use('/', goodsRouter);
+app.use('/auth', authRouter);
 
 app.use((_, res) => {
   res.status(404).json({ message: 'Page not found' });

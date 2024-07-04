@@ -4,11 +4,11 @@ const goodsSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      // required: true,
+      required: true,
     },
     category: {
       type: String,
-      // required: true,
+      required: true,
       enum: [
         'Jewelry',
         'Electronics',
@@ -25,40 +25,40 @@ const goodsSchema = new mongoose.Schema(
     },
     quantity: {
       type: Number,
-      // required: true,
+      required: true,
       min: 1,
       default: 1,
     },
     description: {
       type: String,
-      // required: true,
+      required: true,
     },
     image: {
       type: String,
-      // required: true,
+      required: true,
     },
     owner: {
       type: String,
-      // required: true,
+      required: true,
     },
     price: {
       type: Number,
-      // required: true,
+      required: true,
       min: 0,
     },
     addedDate: {
       type: Date,
-      // required: true,
+      required: true,
     },
     commission: {
       type: Number,
-      // required: true,
-      min: 0,
+      required: true,
+      min: 5,
       max: 100,
     },
     returnDate: {
       type: Date,
-      // required: false,
+      required: true,
     },
   },
   {
@@ -67,6 +67,6 @@ const goodsSchema = new mongoose.Schema(
   }
 );
 
-const Item = mongoose.model('goods', goodsSchema);
+const Item = mongoose.model('good', goodsSchema);
 
 module.exports = Item;
