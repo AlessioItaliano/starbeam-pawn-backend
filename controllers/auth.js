@@ -1,24 +1,24 @@
 const { ctrlWrapper } = require('../helpers');
 
-const { authService } = require('../services');
+const { authServices } = require('../services');
 
 const signup = async (req, res) => {
-  const result = await authService.signUp(req.body);
+  const result = await authServices.signUp(req.body);
   res.status(201).json(result);
 };
 
 const login = async (req, res) => {
-  const result = await authService.logIn(req.body);
+  const result = await authServices.logIn(req.body);
   res.status(200).json(result);
 };
 
 const logout = async (req, res) => {
-  await authService.logout(req.user);
+  await authServices.logOut(req.user);
   res.status(204).end();
 };
 
 const current = async (req, res) => {
-  const result = await authService.current(req.user);
+  const result = await authServices.current(req.user);
   res.status(200).json(result);
 };
 

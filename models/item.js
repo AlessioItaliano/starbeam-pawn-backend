@@ -1,64 +1,86 @@
 const mongoose = require('mongoose');
 
-const goodsSchema = new mongoose.Schema(
+const priceHistorySchema = new mongoose.Schema(
   {
-    name: {
+    estimatedPrice: {
+      type: Number,
+      // required: true,
+    },
+    commission: {
+      type: Number,
+      // required: true,
+      min: 5,
+    },
+    changeDate: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+  {
+    _id: false,
+  }
+);
+
+const itemSchema = new mongoose.Schema(
+  {
+    itemName: {
       type: String,
       required: true,
+      minLength: 2,
+      // match: /^[A-Za-z0-9'\\s-]{2,}$/,
     },
     category: {
       type: String,
       required: true,
       enum: [
-        'Jewelry',
-        'Electronics',
-        'Watches',
-        'Tools',
-        'Musical Instruments',
-        'Sporting Goods',
-        'Luxury Items',
-        'Collectibles',
-        'Household Items',
-        'Miscellaneous',
+        'jewelry',
+        'electronics',
+        'watches',
+        'tools',
+        'musical_instruments',
+        'sporting_goods',
+        'luxury_items',
+        'collectibles',
+        'household_items',
+        'miscellaneous',
       ],
-      default: 'Miscellaneous',
-    },
-    quantity: {
-      type: Number,
-      required: true,
-      min: 1,
-      default: 1,
     },
     description: {
       type: String,
       required: true,
+      minLength: 2,
     },
-    image: {
-      type: String,
-      required: true,
-    },
-    owner: {
-      type: String,
-      required: true,
-    },
-    price: {
+    estimatedPrice: {
       type: Number,
-      required: true,
-      min: 0,
-    },
-    addedDate: {
-      type: Date,
       required: true,
     },
     commission: {
       type: Number,
       required: true,
       min: 5,
-      max: 100,
     },
-    returnDate: {
+    priceHistory: [priceHistorySchema],
+    dateOfAcceptance: {
       type: Date,
       required: true,
+    },
+    dateValidUntil: {
+      type: Date,
+      required: true,
+    },
+    pawnUser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+      required: true,
+    },
+    clientId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'client',
+      required: true,
+    },
+    archived: {
+      type: Boolean,
+      default: false,
     },
   },
   {
@@ -67,6 +89,6 @@ const goodsSchema = new mongoose.Schema(
   }
 );
 
-const Item = mongoose.model('good', goodsSchema);
+const Item = mongoose.model('item', itemSchema);
 
 module.exports = Item;

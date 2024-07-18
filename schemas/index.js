@@ -1,7 +1,9 @@
 const authSchemas = require('./auth');
-// const goodsSchemas = require('./goods');
+const clientSchemas = require('./clients');
+const itemsSchemas = require('./items');
 
 module.exports = {
   authSchemas,
-  // goodsSchemas,
+  clientSchemas,
+  itemsSchemas,
 };

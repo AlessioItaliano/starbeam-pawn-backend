@@ -6,17 +6,9 @@ const { authController } = require('../controllers');
 
 const router = express.Router();
 
-router.post(
-  '/signup',
-  validateBody(authSchemas.signup),
-  authController.signup
-);
+router.post('/signup', validateBody(authSchemas.signup), authController.signup);
 
-router.post(
-  '/login',
-  validateBody(authSchemas.login),
-  authController.login
-);
+router.post('/login', validateBody(authSchemas.login), authController.login);
 
 router.post('/logout', authenticate, authController.logout);
 

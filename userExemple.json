@@ -1,0 +1,12 @@
+[
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "0674455055",
+    "email": "john.doe@example1.com",
+    "password": "$2a$12$7o33lXv1xY2cKSCeUwiTTegoa10TdeW9KMFeIn90TgwMvNIGBbY4y",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGI3NGI4YzViNmQ4YTdhM...",
+    "userAvatar": "https://res.cloudinary.com/daizdx4p7/image/upload/v1720431201/user_ulp...",
+    "positionInTheCompany": "FinancialManager"
+  }
+]

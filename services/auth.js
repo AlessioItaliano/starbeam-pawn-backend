@@ -20,20 +20,20 @@ const signUp = async body => {
     { token: userToken },
     { new: true }
   );
-
-  return { user: updatedUser, token: userToken };
+  return updatedUser;
+  //   return { user: updatedUser, token: userToken };
 };
 
 const logIn = async body => {
   const user = await User.findOne({ email: body.email });
 
   if (!user) {
-    throw new HttpError(401, 'Email or password is incorrect');
+    throw new HttpError(401, 'Email  is incorrect');
   }
   const isPasswordCorrect = await bcrypt.compare(body.password, user.password);
 
   if (!isPasswordCorrect) {
-    throw new HttpError(401, 'Email or password is incorrect');
+    throw new HttpError(401, ' password is incorrect');
   }
 
   const userToken = createToken(user);
@@ -43,20 +43,21 @@ const logIn = async body => {
     { new: true }
   );
 
-  return { user: updatedUser, token: userToken };
+  // return { user: updatedUser, token: userToken };
+  return updatedUser;
 };
 
-const logout = async user => {
+const logOut = async user => {
   await User.findByIdAndUpdate(user._id, { token: null });
 };
 
 const current = async user => {
-  return { user };
+  return user;
 };
 
 module.exports = {
   signUp,
   logIn,
-  logout,
+  logOut,
   current,
 };
