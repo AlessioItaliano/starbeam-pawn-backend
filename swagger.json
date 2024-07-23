@@ -34,7 +34,7 @@
           },
           "password": {
             "type": "string",
-            "example": "Password123"
+            "example": "password123"
           }
         },
         "required": ["email", "password"]
