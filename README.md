@@ -9,7 +9,6 @@ shop management system.
   to add, update, retrieve, and archive items.
 - **Price Management**: Allows for updating and tracking item prices and
   associated commissions.
--
 
 ## How to Run the Project
 
