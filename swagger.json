@@ -1,0 +1,536 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Starbeam Pawn API",
+    "version": "1.0.0",
+    "description": "API for the Customer Relationship Management system of a pawn shop."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    },
+    {
+      "url": "https://starbeam-pawn-backend.onrender.com",
+      "description": "Production server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Bearer token for API authentication. Include the token in the Authorization header as 'Bearer <token>'."
+      }
+    },
+    "schemas": {
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "example@example.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "Password123"
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "60d21b4667d0d8992e610c85"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "patronymic": {
+            "type": "string",
+            "example": "James"
+          },
+          "phone": {
+            "type": "string",
+            "example": "1234567890"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@example.com"
+          },
+          "positionInTheCompany": {
+            "type": "string",
+            "example": "Customer specialist"
+          }
+        }
+      },
+      "Client": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Ivan"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Ivanov"
+          },
+          "patronymic": {
+            "type": "string",
+            "example": "Ivanovich"
+          },
+          "phone": {
+            "type": "string",
+            "example": "1234567890"
+          },
+          "email": {
+            "type": "string",
+            "example": "ivan.ivanov@example.com"
+          },
+          "taxNumber": {
+            "type": "string",
+            "example": "1234567890"
+          },
+          "passport": {
+            "type": "object",
+            "properties": {
+              "passportSerie": {
+                "type": "string",
+                "example": "AB"
+              },
+              "passportNumber": {
+                "type": "string",
+                "example": "123456"
+              },
+              "passportDateOfIssue": {
+                "type": "string",
+                "format": "date",
+                "example": "2021-01-01"
+              }
+            }
+          }
+        },
+        "required": ["firstName", "lastName", "taxNumber"]
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "itemName": {
+            "type": "string",
+            "example": "Gold Ring"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "jewelry",
+              "electronics",
+              "watches",
+              "tools",
+              "musical_instruments",
+              "sporting_goods",
+              "luxury_items",
+              "collectibles",
+              "household_items",
+              "miscellaneous"
+            ],
+            "example": "jewelry"
+          },
+          "description": {
+            "type": "string",
+            "example": "A beautiful gold ring."
+          },
+          "estimatedPrice": {
+            "type": "number",
+            "example": 500
+          },
+          "commission": {
+            "type": "number",
+            "example": 10
+          },
+          "dateOfAcceptance": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-07-01"
+          },
+          "dateValidUntil": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-07-31"
+          },
+          "clientId": {
+            "type": "string",
+            "example": "60d21b4667d0d8992e610c85"
+          },
+          "archived": {
+            "type": "boolean",
+            "example": false
+          },
+          "priceHistory": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "estimatedPrice": {
+                  "type": "number",
+                  "example": 500
+                },
+                "commission": {
+                  "type": "number",
+                  "example": 10
+                },
+                "changeDate": {
+                  "type": "string",
+                  "format": "date",
+                  "example": "2024-07-01"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UpdatePrice": {
+        "type": "object",
+        "properties": {
+          "estimatedPrice": {
+            "type": "number",
+            "example": 600
+          },
+          "commission": {
+            "type": "number",
+            "example": 15
+          }
+        },
+        "required": ["estimatedPrice", "commission"]
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "Log in to the system",
+        "tags": ["Authentication"],
+        "requestBody": {
+          "description": "Credentials for login",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid login credentials"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Log out of the system",
+        "tags": ["Authentication"],
+        "responses": {
+          "204": {
+            "description": "Successful logout"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/current": {
+      "get": {
+        "summary": "Get information about the current user",
+        "tags": ["Authentication"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Information about the current user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/clients": {
+      "get": {
+        "summary": "Get all clients",
+        "tags": ["Clients"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all clients",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Client"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new client",
+        "tags": ["Clients"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "Data for creating a new client",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Client"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created client",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict, client already exists"
+          }
+        }
+      }
+    },
+    "/clients/{taxNumber}": {
+      "get": {
+        "summary": "Get a client by tax number",
+        "tags": ["Clients"],
+        "parameters": [
+          {
+            "name": "taxNumber",
+            "in": "path",
+            "required": true,
+            "description": "Client's tax number",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Client not found"
+          }
+        }
+      }
+    },
+    "/items": {
+      "get": {
+        "summary": "Get all items",
+        "tags": ["Items"],
+        "responses": {
+          "200": {
+            "description": "List of all items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Item"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new item",
+        "tags": ["Items"],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "description": "Data for creating a new item",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Item"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/items/archive": {
+      "get": {
+        "summary": "Get archived items",
+        "tags": ["Items"],
+        "responses": {
+          "200": {
+            "description": "List of archived items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Item"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/items/price/{id}": {
+      "patch": {
+        "summary": "Update item price",
+        "tags": ["Items"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Data for updating the price",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePrice"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        }
+      }
+    },
+    "/items/archive/{id}": {
+      "patch": {
+        "summary": "Move item to archive",
+        "tags": ["Items"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item moved to archive",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        }
+      }
+    }
+  }
+}

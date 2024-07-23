@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDoc = require('./swagger.json');
 
 const app = express();
 
@@ -11,6 +13,7 @@ app.use(express.json());
 app.use('/items', itemsRouter);
 app.use('/auth', authRouter);
 app.use('/clients', clientsRouter);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.use((_, res) => {
   res.status(404).json({ message: 'Page not found' });
