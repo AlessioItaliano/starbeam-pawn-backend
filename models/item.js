@@ -4,11 +4,11 @@ const priceHistorySchema = new mongoose.Schema(
   {
     estimatedPrice: {
       type: Number,
-      // required: true,
+      required: true,
     },
     commission: {
       type: Number,
-      // required: true,
+      required: true,
       min: 5,
     },
     changeDate: {
@@ -27,7 +27,6 @@ const itemSchema = new mongoose.Schema(
       type: String,
       required: true,
       minLength: 2,
-      // match: /^[A-Za-z0-9'\\s-]{2,}$/,
     },
     category: {
       type: String,

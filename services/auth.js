@@ -4,26 +4,6 @@ const { User } = require('../models');
 const { HttpError } = require('../helpers');
 const { createToken } = require('../helpers');
 
-const signUp = async body => {
-  const user = await User.findOne({ email: body.email });
-
-  if (user) {
-    throw new HttpError(409, 'This user is already exist');
-  }
-  const hashedPassword = await bcrypt.hash(body.password, 12);
-
-  const newUser = await User.create({ ...body, password: hashedPassword });
-
-  const userToken = createToken(newUser);
-  const updatedUser = await User.findByIdAndUpdate(
-    newUser._id,
-    { token: userToken },
-    { new: true }
-  );
-  return updatedUser;
-  //   return { user: updatedUser, token: userToken };
-};
-
 const logIn = async body => {
   const user = await User.findOne({ email: body.email });
 
@@ -43,7 +23,6 @@ const logIn = async body => {
     { new: true }
   );
 
-  // return { user: updatedUser, token: userToken };
   return updatedUser;
 };
 
@@ -56,7 +35,6 @@ const current = async user => {
 };
 
 module.exports = {
-  signUp,
   logIn,
   logOut,
   current,

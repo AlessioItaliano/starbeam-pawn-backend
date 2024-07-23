@@ -3,12 +3,10 @@ const Joi = require('joi');
 const historyPriceSchema = Joi.object({
   estimatedPrice: Joi.number().messages({
     'number.base': 'Estimated price must be a number.',
-    // 'number.empty': 'Estimated price is required.',
   }),
   commission: Joi.number().min(5).messages({
     'number.base': 'Commission must be a number.',
     'number.min': 'Commission must be at least 5.',
-    // 'number.empty': 'Commission is required.',
   }),
   changeDate: Joi.date(),
 });
@@ -55,9 +53,7 @@ const itemSchema = Joi.object({
   }),
   clientId: Joi.string().required(),
   archived: Joi.boolean().default(false),
-  priceHistory: historyPriceSchema.messages({
-    // 'any.required': 'Price history information is required',
-  }),
+  priceHistory: historyPriceSchema,
 });
 
 const updatePriceSchema = Joi.object({
@@ -75,5 +71,4 @@ const updatePriceSchema = Joi.object({
 module.exports = {
   itemSchema,
   updatePriceSchema,
-  // updateArchiveSchema
 };

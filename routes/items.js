@@ -23,19 +23,6 @@ router.patch(
 
 router.get('/archive', authenticate, itemsControllers.getArchive);
 
-router.patch(
-  '/archive/:id',
-  // validateBody(itemsSchemas.updateArchiveSchema),
-  authenticate,
-  itemsControllers.moveToArchive
-);
-
-// router.patch(
-//   '/:contactId/favorite',
-//   authenticate,
-//   checkValidId,
-//   validateBody(updateStatusSchema),
-//   updateStatusContact
-// );
+router.patch('/archive/:id', authenticate, itemsControllers.moveToArchive);
 
 module.exports = router;

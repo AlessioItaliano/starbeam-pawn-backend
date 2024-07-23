@@ -1,11 +1,5 @@
 const { ctrlWrapper } = require('../helpers');
-
 const { authServices } = require('../services');
-
-const signup = async (req, res) => {
-  const result = await authServices.signUp(req.body);
-  res.status(201).json(result);
-};
 
 const login = async (req, res) => {
   const result = await authServices.logIn(req.body);
@@ -23,7 +17,6 @@ const current = async (req, res) => {
 };
 
 module.exports = {
-  signup: ctrlWrapper(signup),
   login: ctrlWrapper(login),
   logout: ctrlWrapper(logout),
   current: ctrlWrapper(current),
